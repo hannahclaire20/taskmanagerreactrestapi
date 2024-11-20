@@ -1,0 +1,168 @@
+/* General Reset and Layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6; /* Light background for contrast */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Header Styles */
+header {
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #4f46e5; /* Purple tone for emphasis */
+  margin: 0;
+}
+
+/* Input and Button Styles */
+input,
+button {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Input Focus Styles */
+input:focus {
+  outline: none;
+  border: 2px solid #6366f1;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+}
+
+/* Button Base Styles */
+button {
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4f46e5;
+  transform: translateY(-3px);
+}
+
+/* Card Styles */
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #ffffff, #e5e7eb);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 90%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Weather-Specific Card Backgrounds */
+.card-sunny {
+  background: linear-gradient(135deg, #fef3c7, #fbbf24);
+}
+
+.card-cloudy {
+  background: linear-gradient(135deg, #e0e7ff, #a5b4fc);
+}
+
+.card-rainy {
+  background: linear-gradient(135deg, #bfdbfe, #60a5fa);
+}
+
+/* Action Buttons */
+button.edit {
+  background-color: #fbbf24; /* Yellow for Edit */
+}
+
+button.delete {
+  background-color: #ef4444; /* Red for Delete */
+}
+
+button.add {
+  background-color: #10b981; /* Green for Add */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+<div>
+  {/* Header */}
+  <header>
+    <h1>Weather Dashboard</h1>
+  </header>
+
+  {/* Body Content */}
+  <div>
+    {data.map((item) => (
+      <div
+        key={item.id}
+        className={`card ${getBackgroundColor(item.condition)} hover:shadow-xl`}
+      >
+        {/* Weather Information */}
+        <div>
+          <h3 className="text-2xl font-bold">{item.city}</h3>
+          <p className="text-sm">
+            {item.temperature}°C - {item.condition}
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="mt-2 flex space-x-4">
+          <button className="edit px-4 py-2 rounded-md">Edit</button>
+          <button className="delete px-4 py-2 rounded-md">Delete</button>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+const getBackgroundColor = (condition) => {
+  switch (condition.toLowerCase()) {
+    case "sunny":
+      return "card-sunny";
+    case "cloudy":
+      return "card-cloudy";
+    case "rainy":
+      return "card-rainy";
+    default:
+      return "";
+  }
+};
+
+const getBackgroundColor = (condition) => {
+  switch (condition.toLowerCase()) {
+    case "sunny":
+      return "card-sunny";
+    case "cloudy":
+      return "card-cloudy";
+    case "rainy":
+      return "card-rainy";
+    default:
+      return "";
+  }
+};
+
